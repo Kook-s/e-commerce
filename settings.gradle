@@ -2,4 +2,7 @@ rootProject.name = 'commerce'
 
 include 'common'
 include 'service'
-include'service:commerce'
+include'service:user'
+include'service:product'
+include'service:order'
+include'service:payment'
