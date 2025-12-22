@@ -1,1 +1,8 @@
 rootProject.name = 'commerce'
+
+include 'common'
+include 'service'
+include'service:user'
+include'service:product'
+include'service:order'
+include'service:payment'
