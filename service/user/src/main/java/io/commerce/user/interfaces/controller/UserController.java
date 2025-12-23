@@ -2,13 +2,12 @@ package io.commerce.user.interfaces.controller;
 
 import io.commerce.user.application.dto.UserResult;
 import io.commerce.user.application.service.UserService;
+import io.commerce.user.interfaces.dto.CreateUserRequest;
 import io.commerce.user.interfaces.dto.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,11 +16,17 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<UserResponse> getUserById(@PathVariable("id") Long id) {
-        UserResult user = userService.getUser(id);
+//    @GetMapping("/id/{id}")
+//    public ResponseEntity<UserResponse> getUserById(@PathVariable("id") String id) {
+//        UserResult user = userService.getUser(id);
+//
+//        return ResponseEntity.ok(UserResponse.from(user));
+//    }
 
-        return ResponseEntity.ok(UserResponse.from(user));
+    @PostMapping
+    public ResponseEntity<Void> createUser(@RequestBody CreateUserRequest request) {
+        userService.create(request.toCommand());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/email/{email}")

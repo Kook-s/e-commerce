@@ -26,15 +26,15 @@ public class UserEntity {
     private LocalDateTime updatedAt;
 
     public static UserEntity from(User user) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.id = user.getId();
-        userEntity.email = user.getEmail();
-        userEntity.password = user.getPassword();
-        userEntity.name = user.getName();
-        userEntity.status = user.getStatus();
-        userEntity.createdAt = user.getCreatedAt();
-        userEntity.updatedAt = user.getUpdatedAt();
-        return userEntity;
+        UserEntity entity = new UserEntity();
+        entity.id = user.getId();
+        entity.email = user.getEmail();
+        entity.password = user.getPassword();
+        entity.name = user.getName();
+        entity.status = user.getStatus();
+        entity.createdAt = user.getCreatedAt();
+        entity.updatedAt = user.getUpdatedAt();
+        return entity;
     }
 
     public User toUser() {

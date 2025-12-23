@@ -1,4 +1,4 @@
-package io.commerce.user.support.error;
+package io.commerce.user.support.error.code;
 
 import io.commerce.common.error.ErrorCode;
 import lombok.AllArgsConstructor;

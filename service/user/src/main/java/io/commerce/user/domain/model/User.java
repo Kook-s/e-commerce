@@ -22,9 +22,22 @@ public class User {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.createdAt = createdAt;
         this.name = name;
         this.status = status;
+        this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public static User create(Long id, String email, String password, String name) {
+
+        return User.builder()
+                .id(id)
+                .email(email)
+                .password(password)
+                .name(name)
+                .status(UserStatus.USER)
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
     }
 }
