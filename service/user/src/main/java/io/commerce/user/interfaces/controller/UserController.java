@@ -1,0 +1,33 @@
+package io.commerce.user.interfaces.controller;
+
+import io.commerce.user.application.dto.UserResult;
+import io.commerce.user.application.facade.UserFacade;
+import io.commerce.user.application.service.UserService;
+import io.commerce.user.interfaces.dto.CreateUserRequest;
+import io.commerce.user.interfaces.dto.UserResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/v1/users")
+public class UserController {
+
+    private final UserService userService;
+    private final UserFacade userFacade;
+
+    @PostMapping
+    public ResponseEntity<Void> createUser(@RequestBody CreateUserRequest request) {
+        userFacade.createUser(request.toCommand());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable("email") String email) {
+        UserResult user = userService.getUser(email);
+
+        return ResponseEntity.ok(UserResponse.from(user));
+    }
+}

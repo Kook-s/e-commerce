@@ -1,6 +1,8 @@
 rootProject.name = 'commerce'
 
 include 'common'
+include 'common:snowflake'
+include 'common:error'
 include 'service'
 include'service:user'
 include'service:product'
