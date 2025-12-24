@@ -18,6 +18,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     public Long create(CreateUserCommand command) {
+
+        if(userRepository.existsByEmail(command.getEmail())) {
+            throw new UserException(UserErrorCode.USER_ALREADY_EXISTS);
+        }
+
         User user = User.create(
                 snowflake.nextId(),
                 command.getEmail(),
