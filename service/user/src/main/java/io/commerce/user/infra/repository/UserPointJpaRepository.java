@@ -9,19 +9,19 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface UserPointJpaRepository extends JpaRepository<UserPointEntity, Long> {
-    Optional<UserPointEntity> findByUserId(String userId);
+    Optional<UserPointEntity> findByUserId(Long userId);
 
     @Modifying
     @Query("update UserPointEntity p " +
             "set p.balance = p.balance - :amount, " +
             " p.updatedAt = now() " +
             "where p.userId = :userId")
-    int decrease(@Param("userId") String userId, @Param("amount") long amount);
+    int decrease(@Param("userId") Long userId, @Param("amount") long amount);
 
     @Modifying
     @Query("update UserPointEntity p " +
             "set p.balance = p.balance + :amount, " +
             " p.updatedAt = now() " +
             "where p.userId = :userId")
-    int increase(@Param("userId") String userId, @Param("amount") long amount);
+    int increase(@Param("userId") Long userId, @Param("amount") long amount);
 }

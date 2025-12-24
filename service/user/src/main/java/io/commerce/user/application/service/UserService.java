@@ -17,7 +17,7 @@ public class UserService {
     private final Snowflake snowflake = new Snowflake();
     private final UserRepository userRepository;
 
-    public void create(CreateUserCommand command) {
+    public Long create(CreateUserCommand command) {
         User user = User.create(
                 snowflake.nextId(),
                 command.getEmail(),
@@ -25,6 +25,8 @@ public class UserService {
                 command.getName()
         );
         userRepository.signup(user);
+
+        return user.getId();
     }
 
     public UserResult getUser(String email) {

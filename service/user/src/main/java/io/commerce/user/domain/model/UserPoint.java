@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @Getter
 public class UserPoint {
     private final Long id;
-    private final String userId;
+    private final Long userId;
     private Long balance;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public UserPoint(Long id, String userId, Long balance, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public UserPoint(Long id, Long userId, Long balance, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.userId = userId;
         this.balance = balance;
@@ -23,7 +23,7 @@ public class UserPoint {
         this.updatedAt = updatedAt;
     }
 
-    public static UserPoint create(Long id, String userId) {
+    public static UserPoint create(Long id, Long userId) {
         return new UserPoint(
                 id,
                 userId,

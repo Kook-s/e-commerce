@@ -17,7 +17,7 @@ public class UserPointEntity {
 
     @Id
     private Long id;
-    private String userId;
+    private Long userId;
     private Long balance;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

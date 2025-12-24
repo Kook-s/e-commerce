@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class UserPointResult {
 
     private Long id;
-    private String userId;
+    private Long userId;
     private Long balance;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

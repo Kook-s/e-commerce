@@ -20,7 +20,7 @@
         private final UserPointJpaRepository pointRepository;
 
         @Override
-        public Optional<UserPoint> findByUserId(String userId) {
+        public Optional<UserPoint> findByUserId(Long userId) {
             return pointRepository.findByUserId(userId).map(UserPointEntity::toUserPoint);
         }
 
@@ -30,7 +30,7 @@
         }
 
         @Override
-        public void increasePoint(String userId, long amount) {
+        public void increasePoint(Long userId, long amount) {
             int updated = pointRepository.increase(userId, amount);
 
             if(updated == 0) {
@@ -39,7 +39,7 @@
         }
 
         @Override
-        public void decreasePoint(String userId, long amount) {
+        public void decreasePoint(Long userId, long amount) {
             int updated = pointRepository.decrease(userId, amount);
 
             if(updated == 0) {

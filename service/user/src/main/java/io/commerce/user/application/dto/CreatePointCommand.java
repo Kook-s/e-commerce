@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CreatePointCommand {
-    private String userId;
+    private Long userId;
 
 }

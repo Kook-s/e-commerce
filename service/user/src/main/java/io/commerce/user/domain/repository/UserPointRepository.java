@@ -5,9 +5,9 @@ import io.commerce.user.domain.model.UserPoint;
 import java.util.Optional;
 
 public interface UserPointRepository {
-    Optional<UserPoint> findByUserId(String userId);
+    Optional<UserPoint> findByUserId(Long userId);
     void create(UserPoint userPoint);
 
-    void increasePoint(String userId, long amount);
-    void decreasePoint(String userId, long amount);
+    void increasePoint(Long userId, long amount);
+    void decreasePoint(Long userId, long amount);
 }

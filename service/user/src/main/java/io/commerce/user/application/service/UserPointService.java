@@ -8,6 +8,7 @@ import io.commerce.user.domain.model.UserPoint;
 import io.commerce.user.domain.repository.UserPointRepository;
 import io.commerce.user.support.error.UserPointException;
 import io.commerce.user.support.error.code.UserPointErrorCode;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserPointService {
     private final Snowflake snowflake = new Snowflake();
     private final UserPointRepository userPointRepository;
 
-    public UserPointResult getUserPoint(String userId) {
+    public UserPointResult getUserPoint(Long userId) {
         UserPoint userPoint = userPointRepository.findByUserId(userId).orElseThrow(() -> new UserPointException(UserPointErrorCode.POINT_NOT_FOUND));
         return UserPointResult.builder()
                 .id(userPoint.getId())
@@ -40,14 +41,16 @@ public class UserPointService {
         userPointRepository.create(userPoint);
     }
 
-    public void increaseBalance(String userId, Long amount) {
+    @Transactional
+    public void increaseBalance(Long userId, Long amount) {
         UserPoint userPoint = userPointRepository.findByUserId(userId).orElseThrow(() -> new UserPointException(UserPointErrorCode.POINT_NOT_FOUND));
         userPoint.increase(amount);
 
         userPointRepository.increasePoint(userId, amount);
     }
 
-    public void decreaseBalance(String userId, Long amount) {
+    @Transactional
+    public void decreaseBalance(Long userId, Long amount) {
         UserPoint userPoint = userPointRepository.findByUserId(userId).orElseThrow(() -> new UserPointException(UserPointErrorCode.POINT_NOT_FOUND));
         userPoint.decrease(amount);
 

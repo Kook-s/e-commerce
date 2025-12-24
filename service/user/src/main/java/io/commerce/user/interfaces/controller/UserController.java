@@ -1,6 +1,7 @@
 package io.commerce.user.interfaces.controller;
 
 import io.commerce.user.application.dto.UserResult;
+import io.commerce.user.application.facade.UserFacade;
 import io.commerce.user.application.service.UserService;
 import io.commerce.user.interfaces.dto.CreateUserRequest;
 import io.commerce.user.interfaces.dto.UserResponse;
@@ -15,17 +16,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-
-//    @GetMapping("/id/{id}")
-//    public ResponseEntity<UserResponse> getUserById(@PathVariable("id") String id) {
-//        UserResult user = userService.getUser(id);
-//
-//        return ResponseEntity.ok(UserResponse.from(user));
-//    }
+    private final UserFacade userFacade;
 
     @PostMapping
     public ResponseEntity<Void> createUser(@RequestBody CreateUserRequest request) {
-        userService.create(request.toCommand());
+        userFacade.createUser(request.toCommand());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
