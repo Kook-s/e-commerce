@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public class ProductRepositoryImpl implements ProductRepository {
-    private final Snowflake snowflake = new Snowflake();
+
     private final ProductJpaRepository productJpaRepository;
 
     @Override
@@ -26,26 +26,26 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Optional<Product> findById(Long id) {
-        return Optional.empty();
+        return productJpaRepository.findById(id).map(ProductEntity::toProduct);
     }
 
     @Override
     public Optional<Product> findByName(String name) {
-        return Optional.empty();
+        return productJpaRepository.findByName(name).map(ProductEntity::toProduct);
     }
 
     @Override
     public void save(Product product) {
-
+        productJpaRepository.save(ProductEntity.from(product));
     }
 
     @Override
-    public void updateProduct(Product product) {
-
+    public void delete(Long id) {
+        productJpaRepository.deleteById(id);
     }
 
     @Override
-    public void delete(Product product) {
-
+    public boolean existsByName(String name) {
+        return productJpaRepository.existsByName(name);
     }
 }

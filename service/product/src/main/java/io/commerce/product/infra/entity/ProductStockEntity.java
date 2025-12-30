@@ -30,4 +30,8 @@ public class ProductStockEntity {
         entity.updatedAt = stock.getUpdatedAt();
         return entity;
     }
+
+    public ProductStock toProductStock() {
+        return new ProductStock(productId, quantity, createdAt, updatedAt);
+    }
 }

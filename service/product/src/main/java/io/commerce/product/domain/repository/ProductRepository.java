@@ -10,6 +10,6 @@ public interface ProductRepository {
     Optional<Product> findById(Long id);
     Optional<Product> findByName(String name);
     void save(Product product);
-    void updateProduct(Product product);
-    void delete(Product product);
+    void delete(Long id);
+    boolean existsByName(String name);
 }

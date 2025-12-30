@@ -26,4 +26,8 @@ public class Product {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+    public static Product create(Long id, String name, Long price){
+        return new Product(id, name, price, ProductStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.now());
+    }
 }
