@@ -13,3 +13,4 @@ public abstract class BusinessException extends RuntimeException {
         return errorCode;
     }
 }
+`
