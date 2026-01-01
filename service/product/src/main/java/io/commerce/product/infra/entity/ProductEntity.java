@@ -31,6 +31,7 @@ public class ProductEntity {
         entity.id = product.getId();
         entity.name = product.getName();
         entity.price = product.getPrice();
+        entity.status = product.getStatus();
         entity.createdAt = product.getCreatedAt();
         entity.updatedAt = product.getUpdatedAt();
         return entity;

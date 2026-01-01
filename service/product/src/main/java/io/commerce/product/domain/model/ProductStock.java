@@ -32,10 +32,12 @@ public class ProductStock {
     }
 
     public void decreaseQuantity(Long quantity) {
-        if (this.quantity < 0) {
+        if(quantity == null || quantity <= 0) {
+            throw new ProductStockException(ProductStockErrorCode.PRODUCT_STOCK_ALREADY_INITIALIZED);
+        }
+        if (this.quantity < quantity) {
             throw new ProductStockException(ProductStockErrorCode.PRODUCT_STOCK_ALREADY_INITIALIZED);
         }
         this.quantity -= quantity;
-
     }
 }
