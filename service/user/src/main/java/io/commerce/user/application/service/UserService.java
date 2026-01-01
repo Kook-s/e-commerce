@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final Snowflake snowflake = new Snowflake();
+    private final Snowflake snowflake;
     private final UserRepository userRepository;
 
     public Long create(CreateUserCommand command) {

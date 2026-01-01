@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class UserPointService {
 
-    private final Snowflake snowflake = new Snowflake();
+    private final Snowflake snowflake;
     private final UserPointRepository userPointRepository;
 
     public UserPointResult getUserPoint(Long userId) {
