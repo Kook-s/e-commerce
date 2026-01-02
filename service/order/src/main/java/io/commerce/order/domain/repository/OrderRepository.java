@@ -10,5 +10,9 @@ public interface OrderRepository {
     Optional<Order> findById(Long id);
     List<Order> findByUserId(Long userId);
 
-    void save(Order order);
+    Order save(Order order);
+
+    Optional<Order> findByUserIdAndStatus(Long userId);
+
+    void updateTotalPrice(Long orderId, Long totalPrice);
 }

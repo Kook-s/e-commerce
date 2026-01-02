@@ -19,4 +19,15 @@ public class Order {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public static Order create(Long id, Long userId){
+        return Order.builder()
+                .id(id)
+                .userId(userId)
+                .status(OrderStatus.PAYMENT_PENDING)
+                .totalPrice(0L)
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
 }

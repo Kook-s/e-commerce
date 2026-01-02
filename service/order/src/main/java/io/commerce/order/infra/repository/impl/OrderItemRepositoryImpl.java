@@ -39,4 +39,19 @@ public class OrderItemRepositoryImpl implements OrderItemRepository {
     public void save(OrderItem orderItem) {
         orderItemJpaRepository.save(OrderItemEntity.from(orderItem));
     }
+
+    @Override
+    public Optional<OrderItem> findByOrderIdAndProductId(Long orderId, Long productId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void increaseQuantity(Long orderId, Long productId, Long quantity) {
+        orderItemJpaRepository.increaseQuantity(orderId, productId, quantity);
+    }
+
+    @Override
+    public Long sumTotalPriceByOrderId(Long orderId) {
+        return orderItemJpaRepository.sumTotalPriceByOrderId(orderId);
+    }
 }

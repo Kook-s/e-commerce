@@ -1,16 +1,17 @@
 package io.commerce.order.infra.repository.impl;
 
+import io.commerce.order.domain.OrderStatus;
 import io.commerce.order.domain.model.Order;
 import io.commerce.order.domain.repository.OrderRepository;
 import io.commerce.order.infra.entity.OrderEntity;
 import io.commerce.order.infra.repository.OrderJpaRepository;
-import jdk.jfr.Registered;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Registered
+@Repository
 @RequiredArgsConstructor
 public class OrderRepositoryImpl implements OrderRepository {
 
@@ -29,7 +30,18 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public void save(Order order) {
+    public Order save(Order order) {
         orderJpaRepository.save(OrderEntity.from(order));
+        return order;
+    }
+
+    @Override
+    public Optional<Order> findByUserIdAndStatus(Long userId) {
+        return orderJpaRepository.findByUserIdAndStatus(userId, OrderStatus.PAYMENT_PENDING).map(OrderEntity::toOrder);
+    }
+
+    @Override
+    public void updateTotalPrice(Long orderId, Long totalPrice) {
+        orderJpaRepository.updateTotalPrice(orderId, totalPrice);
     }
 }

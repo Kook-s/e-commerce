@@ -12,4 +12,10 @@ public interface OrderItemRepository {
     List<OrderItem> findByProductId(Long productId);
 
     void save(OrderItem orderItem);
+
+    Optional<OrderItem> findByOrderIdAndProductId(Long orderId, Long productId);
+
+    void increaseQuantity(Long orderId, Long productId, Long quantity);
+
+    Long sumTotalPriceByOrderId(Long orderId);
 }
